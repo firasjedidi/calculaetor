@@ -7,6 +7,7 @@ $('#calcHelp').click(function(){
     $('.cal').toggle()
 })
 //this part for the calculater 
+//the arr for storing the values when we click on button and it the val well be integer not integer in ""
 var arr=[]  
 $('.btn').click(function () { 
     var n=$(this).val();
@@ -19,7 +20,8 @@ $('.btn').click(function () {
     })
 ;})  
 
-
+//this code when i click the operator it will do it specifce function like you see in the code down and also about the res i sign to it the ivocation of the function so it saves the previous res and add to it
+//still not fully working
 $('.op').click(function(){
    var o= $(this).val();
    $('#dis').append(o);
@@ -27,7 +29,6 @@ $('.op').click(function(){
      function add(arr){
         var res=0;
         for (let i = 0; i < arr.length; i++) {
-            console.log(res)
             res+= arr[i];
         }
         return res
@@ -46,7 +47,7 @@ $('.op').click(function(){
         function prod(arr){
             var res=1;
             for (let i = 0; i < arr.length; i++) {
-                console.log(res)
+                
                 res*= arr[i];
             }
             return res
@@ -55,7 +56,6 @@ $('.op').click(function(){
             var res;
             $("#dis").empty();
             res=prod(arr)
-            console.log(res)
             $("#dis").append(res)
             
         });  
@@ -65,7 +65,6 @@ $('.op').click(function(){
         function subs (arr) {
         var sub = arr[0]
         for (var i = 1 ; i<arr.length ; i++){
-            console.log(sub)
          sub -= arr[i]
         }
         return sub 
@@ -74,7 +73,6 @@ $('.op').click(function(){
             var res ;
             $("#dis").empty();
             res=subs(arr);
-            console.log(subs(arr))
             $("#dis").append(res)
         });  
     } 
@@ -82,7 +80,7 @@ $('.op').click(function(){
         function divi(arr){
             var div = arr[0]
         for (var i = 1 ; i<arr.length ; i++){
-            console.log(div)
+        
          div /= arr[i]
         }
         return div
@@ -222,7 +220,7 @@ pass2.attr("placeholder","password")
 $(check).append(pass2)
 
 ///////
-
+//creation of submit button for siigin 
 var signin=$('<input type="submit">')
 signin.addClass('signin')
 signin.attr("value","singIn")
@@ -233,12 +231,11 @@ signin.css({
 $(check).append(signin)
 
 
-// signin.hide()
 // ///////////
 
 
 // //////////////////////////
-///this contact is like array every time we call it it well update when push it  DON'T TOUCH THSI CODE
+///this contact is like array every time we call it it well update when push it  DON'T TOUCH THIS CODE
  var contact=JSON.parse(localStorage.data)
  function create(email,password,name,lastname) {
     return {
@@ -248,12 +245,11 @@ $(check).append(signin)
     password : password
  } 
  }
-// this event  when i click at the singUp it well check if you fill the all the inputs if the inpu are not filled it well some border -style and also if inputs are filed it well take the value of each input and save them in object annd push that object in array as data that well use later 
+/// this event  when i click at the singUp it well check if you fill the all the inputs if the input are not filled it well some border -style and also if inputs are filed it well take the value of each input and save them in object annd push that object in array as data that well use later 
 $(signup).click(function () {
     contact.push(create($(".email").val(),$(".pass").val(),$(".name").val(),$(".lastName").val()))
     localStorage.setItem('data', JSON.stringify(contact));
-    console.log(JSON.parse(localStorage.data))
-    console.log(contact)
+
     if($(".pass").val().length < 8 && (".email").indexOf('@')){
             $(".email").css('border-color','red')
             $(".pass").css('border-color','red')
@@ -279,7 +275,7 @@ $(signup).click(function () {
                 }
 })
 
-//the singin it
+//the singin well check if the email is stored in the contact array of obj and if it' valid it will show the main 
 $(signin).click(function () { 
     var emailVal=$(".email2").val()
     var passVal=$('.pass2').val()
@@ -294,19 +290,17 @@ $(signin).click(function () {
 });
 
 $('#main2').hide()
+///this code is on proggress
+// $('.sel').click(function(){
+//     var arr=[]
+//     var C=$("input:checked")
+   
+//     for(var i=0;i<arr.length;i++){
 
-$('.sel').click(function(){
-    var arr=[]
-    var C=$("input:checked")
-    console.log(c)
-    for(var i=0;i<arr.length;i++){
+//     }
 
-    }
-    
-    console.log(arr);
-    
-})
-
+// })
+///this to log out from main 
 $('.sginOut').click(function(){
     $('#main2').hide()
     $('#calcHelp').hide()
